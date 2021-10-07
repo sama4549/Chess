@@ -1,0 +1,65 @@
+// Variables
+$color-primary: #ccc;
+$color-secondary: #667;
+$color-terciary: #eee;
+
+// Reset
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Background Color
+body {
+    background-color: $color-primary;
+    max-height: 100vh;
+}
+
+// Start Container
+.start-content {
+    border: 2px solid black;
+    background-color: $color-terciary;
+    width: 60vw;
+    margin: 0 auto;
+}
+
+// Chess Board
+#board {
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    height: 720px;
+    width: 750px;
+    margin: 0 auto;
+    border: 2px solid black;
+    display: none;
+
+    .black {
+        background-color: #667;
+    }
+
+    div {
+        font-size: 50px;
+    }
+
+    .hoverable:hover {
+        background-color: lightcyan;
+        cursor: pointer;
+    }
+
+    .selected {
+        background-color: lightcyan;
+        transform: scale(1.1);
+    }
+
+    .available {
+        background-color: rgb(153, 163, 163);
+        cursor: pointer;
+    }
+
+    .available:hover {
+        background-color: rgb(239, 243, 243);
+    }
+}
