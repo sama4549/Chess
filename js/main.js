@@ -1,11 +1,12 @@
 // Imports
 import Continue from './update.js';
+import { Check } from './check.js';
 
 // Variables
 const startButton = document.getElementById('start-button');
 const startGame = document.getElementById('start-game');
 const board = document.getElementById('board');
-let currentTurn = 'white';
+export let currentTurn = 'white';
 
 // Event Listeners
 startButton.addEventListener('click', init);
@@ -17,6 +18,7 @@ function init() {
     createBoard();
 }
 
+const playGame = new Continue;
 
 // Function to Create the Board
 function createBoard() {
@@ -34,9 +36,14 @@ function createBoard() {
     finishedBoard.createPieces();
 
     // Refresh Pieces
-    const playGame = new Continue;
+    updateBoard();
+}
+
+// Refresh Pieces
+export function updateBoard() {
     playGame.updatePieces(currentTurn);
 }
+
 
 
 // Board Space Creater Constructor
