@@ -1,4 +1,5 @@
 export class Check {
+    // Light up available sections
     whitePawn(selected) {
         const spotId = selected.id;
         const availableIds = [spotId - 8 , spotId - 16];
@@ -16,6 +17,7 @@ export class Check {
     }
 
     whiteKnight(selected) {
+        // Light up available sections
         const spotId = selected.id;
         const availableIds = [spotId - 17, spotId - 15];
         for (let i = 0; i < 64; i++) {
