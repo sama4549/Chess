@@ -1,4 +1,4 @@
-import { updateBoard, currentTurn } from "./main.js";
+import { updateBoard, currentTurn, playGame } from "./main.js";
 
 export class Check {
     // Light up available sections & move pieces upon clicks
@@ -15,24 +15,40 @@ export class Check {
             if(elementId == availableIdOne && selected.classList.contains('selected')) {
                 board.children[availableIdOne].classList.add('available');
                 // Event listener to allow for moving pieces
-                board.children[availableIdOne].addEventListener('click', (e) => {
-                    board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                    board.children[spotId].innerHTML = '';
-                    e.target.innerHTML = '&#9817';
-                    e.target.className += ' white-pawn, hoverable, white-piece';
+                board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-pawn hoverable white-piece';
+                        playGame.updatePieces(currentTurn);
+                    } else {
+                        return;
+                    }
                 });
             }
 
-            if(elementId == availableIdTwo) {
-                board.children[availableIdTwo].classList.add('available');
-                // Event listener to allow for moving pieces
-                board.children[availableIdTwo].addEventListener('click', (e) => {
-                    board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                    board.children[spotId].innerHTML = '';
-                    e.target.innerHTML = '&#9817';
-                    e.target.className += ' white-pawn, hoverable, white-piece';
-                });
+            if(spotId !== 48 && spotId !== 49 && spotId !== 50 && spotId !== 51 && spotId !== 52 && spotId !== 53 && spotId !== 54 && spotId !== 55) {
+                if(elementId == availableIdTwo) {
+                    board.children[availableIdTwo].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            e.target.className += ' white-pawn hoverable white-piece';
+                            playGame.updatePieces(currentTurn);
+                        } else {
+                            return;
+                        }
+                    });
+                } else {
+                    return;
+                }
             }
+
+
         }
     }
 

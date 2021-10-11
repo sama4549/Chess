@@ -18,7 +18,7 @@ function init() {
     createBoard();
 }
 
-const playGame = new Continue;
+export const playGame = new Continue;
 
 // Function to Create the Board
 function createBoard() {

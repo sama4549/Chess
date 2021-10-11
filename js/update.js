@@ -7,8 +7,10 @@ export default class Continue {
 
     updatePieces(turn) {
         currentTurn = turn;
-        console.log(currentTurn);
         for(let i = 0; i < 64; i++) {
+            // Reset all event listeners to allow for moving pieces more than once
+            board.children[i].removeEventListener('click', this.selectNone);
+
             // Update Black Pieces
             if(board.children[i].classList.contains("black-rook")) {
                 board.children[i].innerHTML = '&#9820';
@@ -81,8 +83,8 @@ export default class Continue {
     // De-select all squares
     selectNone() {
         for (let i = 0; i < 63; i++) {
-            board.children[i].classList.remove('selected');
-            board.children[i].classList.remove('available');
+            setTimeout( () => {board.children[i].classList.remove('selected')} , 10);
+            setTimeout( () => {board.children[i].classList.remove('available')} , 10);
         }
     }
 
