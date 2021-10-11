@@ -99,22 +99,22 @@ class ChessBoard {
         document.getElementById('7').className += ' black-rook black-piece';
         document.getElementById('8').className += ' black-pawn black-piece';
         document.getElementById('9').className += ' black-pawn black-piece';
-        document.getElementById('10').className += ' black-pawn black-piece';
-        document.getElementById('11').className += ' black-pawn black-piece';
-        document.getElementById('12').className += ' black-pawn black-piece';
-        document.getElementById('13').className += ' black-pawn black-piece';
-        document.getElementById('14').className += ' black-pawn black-piece';
-        document.getElementById('15').className += ' black-pawn black-piece';
+        document.getElementById('10').className += ' black-pawn black-piece start';
+        document.getElementById('11').className += ' black-pawn black-piece start';
+        document.getElementById('12').className += ' black-pawn black-piece start';
+        document.getElementById('13').className += ' black-pawn black-piece start';
+        document.getElementById('14').className += ' black-pawn black-piece start';
+        document.getElementById('15').className += ' black-pawn black-piece start';
 
         // Create White Pieces
-        document.getElementById('48').className += ' white-pawn white-piece';
-        document.getElementById('49').className += ' white-pawn white-piece';
-        document.getElementById('50').className += ' white-pawn white-piece';
-        document.getElementById('51').className += ' white-pawn white-piece';
-        document.getElementById('52').className += ' white-pawn white-piece';
-        document.getElementById('53').className += ' white-pawn white-piece';
-        document.getElementById('54').className += ' white-pawn white-piece';
-        document.getElementById('55').className += ' white-pawn white-piece';
+        document.getElementById('48').className += ' white-pawn white-piece start';
+        document.getElementById('49').className += ' white-pawn white-piece start';
+        document.getElementById('50').className += ' white-pawn white-piece start';
+        document.getElementById('51').className += ' white-pawn white-piece start';
+        document.getElementById('52').className += ' white-pawn white-piece start';
+        document.getElementById('53').className += ' white-pawn white-piece start';
+        document.getElementById('54').className += ' white-pawn white-piece start';
+        document.getElementById('55').className += ' white-pawn white-piece start';
         document.getElementById('56').className += ' white-rook white-piece';
         document.getElementById('57').className += ' white-knight white-piece';
         document.getElementById('58').className += ' white-bishop white-piece';

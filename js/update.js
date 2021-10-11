@@ -78,6 +78,7 @@ export default class Continue {
                 board.children[i].addEventListener('click', this.selectNone);
             }
         }
+
     }
 
     // De-select all squares
@@ -106,6 +107,10 @@ export default class Continue {
                     // Check Knights
                     if(selected.classList.contains('white-knight')) {
                         check.whiteKnight(selected);
+                    }
+                    // Check Bishops
+                    if(selected.classList.contains('white-bishop')) {
+                        check.whiteBishop(selected);
                     }
                 }
             }
