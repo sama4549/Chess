@@ -92,34 +92,36 @@ export default class Continue {
     // Light up selected piece
     selectPiece(e) {
         let selected = e.target;
-        for (let i = 0; i < 64; i++) {
-            board.children[i].classList.remove('selected');
-            board.children[i].classList.remove('available');
-
-            if(currentTurn === 'white') {
-                if(selected.classList.contains('white-piece')) {
-                    selected.classList.add('selected');
-                    const check = new Check();
-                    // Check Pawns
-                    if(selected.classList.contains('white-pawn')) {
-                        check.whitePawn(selected);
+        setTimeout( () => {
+            for (let i = 0; i < 64; i++) {
+                board.children[i].classList.remove('selected');
+                board.children[i].classList.remove('available');
+    
+                if(currentTurn === 'white') {
+                    if(selected.classList.contains('white-piece')) {
+                        selected.classList.add('selected');
+                        const check = new Check();
+                        // Check Pawns
+                        if(selected.classList.contains('white-pawn')) {
+                            check.whitePawn(selected);
+                        }
+                        // Check Knights
+                        if(selected.classList.contains('white-knight')) {
+                            check.whiteKnight(selected);
+                        }
+                        // Check Bishops
+                        if(selected.classList.contains('white-bishop')) {
+                            check.whiteBishop(selected);
+                        }
                     }
-                    // Check Knights
-                    if(selected.classList.contains('white-knight')) {
-                        check.whiteKnight(selected);
-                    }
-                    // Check Bishops
-                    if(selected.classList.contains('white-bishop')) {
-                        check.whiteBishop(selected);
+                }
+    
+                if(currentTurn === 'black') {
+                    if(selected.classList.contains('black-piece')) {
+                        selected.classList.add('selected');
                     }
                 }
             }
-
-            if(currentTurn === 'black') {
-                if(selected.classList.contains('black-piece')) {
-                    selected.classList.add('selected');
-                }
-            }
-        }
+        })
     }
 }
