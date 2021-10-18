@@ -2,14 +2,24 @@
 import { Check } from './check.js';
 
 let currentTurn;
+const check = new Check();
 
 export default class Continue {
 
-    updatePieces(turn) {
+    updatePieces(turn, listenForClick) {
         currentTurn = turn;
         for(let i = 0; i < 64; i++) {
             // Reset all event listeners to allow for moving pieces more than once
             board.children[i].removeEventListener('click', this.selectNone);
+            board.children[i].removeEventListener('click', listenForClick);
+
+            // This code will reset the board and guarantee that all of the highlighted squares are turned off
+            if(board.children[i].classList.contains('available')) {
+                board.children[i].classList.remove('available');
+            }
+            if(board.children[i].classList.contains('selected')) {
+                board.children[i].classList.remove('selected');
+            }
 
             // Update Black Pieces
             if(board.children[i].classList.contains("black-rook")) {
@@ -100,7 +110,6 @@ export default class Continue {
                 if(currentTurn === 'white') {
                     if(selected.classList.contains('white-piece')) {
                         selected.classList.add('selected');
-                        const check = new Check();
                         // Check Pawns
                         if(selected.classList.contains('white-pawn')) {
                             check.whitePawn(selected);
@@ -122,6 +131,6 @@ export default class Continue {
                     }
                 }
             }
-        })
+        }, 10);
     }
 }

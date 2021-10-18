@@ -20,7 +20,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9817';
                         e.target.className += ' white-pawn hoverable white-piece';
-                        playGame.updatePieces(currentTurn);
+                        playGame.updatePieces(currentTurn, listenForClick);
                     }
                 });
             }
@@ -33,7 +33,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9817';
                         e.target.className += ' white-pawn hoverable white-piece';
-                        playGame.updatePieces(currentTurn);
+                        playGame.updatePieces(currentTurn, listenForClick);
                     } else {
                         return;
                     }
@@ -44,21 +44,31 @@ export class Check {
 
     whiteBishop(selected) {
         // Light up available sections
+        let boardArray = Array.prototype.slice.call(board.children);
         const spotId = selected.id;
         let availableIds = [];
         for (let i = 0; i < 10; i++) {
-            availableIds.push(spotId - (9 * i), spotId - (7 * i));
+            let upLeft = spotId - (9 * i);
+            availableIds.push(upLeft);
+            if (upLeft === 0 || upLeft === 8 || upLeft === 16 || upLeft === 24 || upLeft === 32 || upLeft === 40 || upLeft === 48 || upLeft === 56/* || boardArray[upLeft].classList.contains('white-piece')*/) {
+                break;
+            }
+        }
+        for (let i = 0; i < 15; i++) {
+            let upRight = spotId - (7 * i);
+            availableIds.push(upRight);
+            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
+                break;
+            }
         }
         availableIds.forEach(id => {
-            let boardArray = Array.prototype.slice.call(board.children);
+
             boardArray.forEach(spot=> {
                 let spotName = spot.id;
                 if(spotName = id) {
-                    console.log(board.children[id]);
                     board.children[id].classList.add('available');
                     board.children[id].addEventListener('click', function listenForClick(e) {
-                        if(spot.classList.contains('selected')) {
-                            console.log('testing...');
+                        if(spot.classList.contains('white-bishop') && spot.classList.contains('selected')) {
                             spot.classList.remove('white-bishop', 'hoverable', 'white-peice');
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9815';
