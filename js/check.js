@@ -57,7 +57,8 @@ export class Check {
         for (let i = 0; i < 15; i++) {
             let upRight = spotId - (7 * i);
             availableIds.push(upRight);
-            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
+            console.log(boardArray[upRight]);
+            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63 || boardArray[51].classList.contains('hoverable')) {
                 break;
             }
         }
