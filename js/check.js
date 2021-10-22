@@ -47,21 +47,44 @@ export class Check {
         let boardArray = Array.prototype.slice.call(board.children);
         const spotId = selected.id;
         let availableIds = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 1; i < 10; i++) {
             let upLeft = spotId - (9 * i);
-            availableIds.push(upLeft);
-            if (upLeft === 0 || upLeft === 8 || upLeft === 16 || upLeft === 24 || upLeft === 32 || upLeft === 40 || upLeft === 48 || upLeft === 56/* || boardArray[upLeft].classList.contains('white-piece')*/) {
+            if (upLeft === 0 || upLeft === 8 || upLeft === 16 || upLeft === 24 || upLeft === 32 || upLeft === 40 || upLeft === 48 || upLeft === 56) {
+                availableIds.push(upLeft);
                 break;
+            } else if (boardArray[upLeft].classList.contains('hoverable')) {
+                break;
+            } else {
+                availableIds.push(upLeft);
             }
         }
-        for (let i = 0; i < 15; i++) {
+
+        for (let i = 1; i < 10; i++) {
             let upRight = spotId - (7 * i);
             availableIds.push(upRight);
             console.log(boardArray[upRight]);
             if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63 || boardArray[51].classList.contains('hoverable')) {
                 break;
+            } else {
+                availableIds.push(downLeft);
             }
         }
+
+        for (let i = 1; i < 10; i++) {
+            let downRight = Number(spotId) + Number((9 * i));
+            if (downRight == 7 || downRight == 15 || downRight == 23 || downRight == 31 || downRight == 39 || downRight == 47 || downRight == 55 || downRight == 63 ) {
+                availableIds.push(downRight);
+                break;
+            } else if (boardArray[downRight] === undefined) {
+                break;
+            } else if (boardArray[downRight].classList.contains('hoverable')) {
+                break;
+            } else {
+                availableIds.push(downRight);
+            }
+        }
+
+
         availableIds.forEach(id => {
 
             boardArray.forEach(spot=> {
