@@ -61,9 +61,24 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let upRight = spotId - (7 * i);
-            availableIds.push(upRight);
-            console.log(boardArray[upRight]);
-            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63 || boardArray[51].classList.contains('hoverable')) {
+            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
+                availableIds.push(upRight);
+                break;
+            } else if (boardArray[upRight].classList.contains('hoverable')) {
+                break;
+            } else {
+                availableIds.push(upRight);
+            }
+        }
+
+        for (let i = 1; i < 10; i++) {
+            let downLeft = Number(spotId) + Number((7 * i));
+            if (downLeft === 0 || downLeft === 8 || downLeft === 16 || downLeft === 24 || downLeft === 32 || downLeft === 40 || downLeft === 48 || downLeft === 56) {
+                availableIds.push(downLeft);
+                break;
+            } else if (boardArray[downLeft] === undefined) {
+                break;
+            } else if (boardArray[downLeft].classList.contains('hoverable')) {
                 break;
             } else {
                 availableIds.push(downLeft);
@@ -110,16 +125,247 @@ export class Check {
     whiteKnight(selected) {
         // Light up available sections
         const spotId = selected.id;
-        const availableIds = [spotId - 17, spotId - 15];
+        const availableIds = [spotId - 17, spotId - 15, spotId - 6, spotId - 10];
         for (let i = 0; i < 64; i++) {
             const elementId = document.getElementById(i).id;
             const availableIdOne = availableIds[0];
             const availableIdTwo = availableIds[1];
-            if(elementId == availableIdOne || elementId == availableIdTwo) {
-                console.log('Selected Spot:' , spotId);
-                console.log('Spot to be highlighted' , availableIdOne , availableIdTwo);
-                board.children[availableIdOne].classList.add('available');
-                board.children[availableIdTwo].classList.add('available');
+            const availableIdThree = availableIds[2];
+            const availableIdFour = availableIds[3];
+
+            // Move pieces
+            if(elementId == availableIdOne) {
+                if(board.children[availableIdOne].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdOne].classList.add('available');
+                }
+                // Event listener to allow for moving pieces
+                board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+            }
+
+            if(elementId == availableIdTwo) {
+                if(board.children[availableIdTwo].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdTwo].classList.add('available');
+                }
+                // Event listener to allow for moving pieces
+                board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+            }
+
+            if(elementId == availableIdThree) {
+                if(board.children[availableIdThree].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdThree].classList.add('available');
+                }
+                // Event listener to allow for moving pieces
+                board.children[availableIdThree].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+            }
+
+            if(elementId == availableIdFour) {
+                if(board.children[availableIdFour].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdFour].classList.add('available');
+                }
+                // Event listener to allow for moving pieces
+                board.children[availableIdFour].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+            }
+        }
+    }
+
+    whiteKing(selected) {
+        // Light up available sections
+        const spotId = selected.id;
+        const availableIds = [spotId - 1, spotId - 9, spotId - 8, spotId - 7, Number(spotId) + 1, Number(spotId) + 9, Number(spotId) + 8, Number(spotId) + 7];
+        for (let i = 0; i < 64; i++) {
+            const elementId = document.getElementById(i).id;
+            const availableIdOne = availableIds[0];
+            const availableIdTwo = availableIds[1];
+            const availableIdThree = availableIds[2];
+            const availableIdFour = availableIds[3];
+            const availableIdFive = availableIds[4];
+            const availableIdSix = availableIds[5];
+            const availableIdSeven = availableIds[6];
+            const availableIdEight = availableIds[7];
+
+            // Move pieces
+            if(elementId == availableIdOne) {
+                if(board.children[availableIdOne].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdOne].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdTwo) {
+                if(board.children[availableIdTwo].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdTwo].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdThree) {
+                if(board.children[availableIdThree].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdThree].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdThree].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdFour) {
+                if(board.children[availableIdFour].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdFour].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdFour].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdFive) {
+                if(board.children[availableIdFive].classList.contains('hoverable')) {
+                    console.log(availableIdFive , 'blocked');
+                } else {
+                    board.children[availableIdFive].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdFive].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdSix) {
+                if(board.children[availableIdSix].classList.contains('hoverable')) {
+                    console.log(availableIdSix , 'blocked');
+                } else {
+                    board.children[availableIdSix].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdSix].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdSeven) {
+                if(board.children[availableIdSeven].classList.contains('hoverable')) {
+                    console.log(availableIdSeven , 'blocked');
+                } else {
+                    board.children[availableIdSeven].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdSeven].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            e.target.className += ' white-king hoverable white-piece';
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        }
+                    });
+                }
+            }
+
+            if(elementId == availableIdEight) {
+                if(board.children[availableIdEight].classList.contains('hoverable')) {
+                    console.log(availableIdEight , 'blocked');
+                } else {
+                    board.children[availableIdEight].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdEight].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+            }
             }
         }
     }

@@ -122,6 +122,10 @@ export default class Continue {
                         if(selected.classList.contains('white-bishop')) {
                             check.whiteBishop(selected);
                         }
+                        // Check King
+                        if(selected.classList.contains('white-king')) {
+                            check.whiteKing(selected);
+                        }
                     }
                 }
     
