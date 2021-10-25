@@ -12,32 +12,40 @@ export class Check {
 
             // Move Pieces
             if(elementId == availableIdOne) {
-                board.children[availableIdOne].classList.add('available');
-                // Event listener to allow for moving pieces
-                board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        e.target.className += ' white-pawn hoverable white-piece';
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    }
-                });
+                if (board.children[availableIdOne].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdOne].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            e.target.className += ' white-pawn hoverable white-piece';
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        }
+                    });
+                }
             }
             if(elementId == availableIdTwo && selected.classList.contains('start')) {
-                board.children[availableIdTwo].classList.add('available');
-                // Event listener to allow for moving pieces
-                board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        e.target.className += ' white-pawn hoverable white-piece';
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    } else {
-                        return;
-                    }
-                });
+                if (board.children[availableIdTwo].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdTwo].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            e.target.className += ' white-pawn hoverable white-piece';
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        } else {
+                            return;
+                        }
+                    });
+                }
             }
         }
     }
@@ -125,13 +133,17 @@ export class Check {
     whiteKnight(selected) {
         // Light up available sections
         const spotId = selected.id;
-        const availableIds = [spotId - 17, spotId - 15, spotId - 6, spotId - 10];
+        const availableIds = [spotId - 17, spotId - 15, spotId - 6, spotId - 10, Number(spotId) + 17, Number(spotId) + 15, Number(spotId) + 10, Number(spotId) + 6];
         for (let i = 0; i < 64; i++) {
             const elementId = document.getElementById(i).id;
             const availableIdOne = availableIds[0];
             const availableIdTwo = availableIds[1];
             const availableIdThree = availableIds[2];
             const availableIdFour = availableIds[3];
+            const availableIdFive = availableIds[4];
+            const availableIdSix = availableIds[5];
+            const availableIdSeven = availableIds[6];
+            const availableIdEight = availableIds[7];
 
             // Move pieces
             if(elementId == availableIdOne) {
@@ -139,9 +151,8 @@ export class Check {
                     console.log('blocked');
                 } else {
                     board.children[availableIdOne].classList.add('available');
-                }
-                // Event listener to allow for moving pieces
-                board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdOne].addEventListener('click', function listenForClick(e) {
                     if(board.children[spotId].classList.contains('selected')) {
                         board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
                         board.children[spotId].innerHTML = '';
@@ -150,6 +161,7 @@ export class Check {
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 });
+                }
             }
 
             if(elementId == availableIdTwo) {
@@ -157,9 +169,8 @@ export class Check {
                     console.log('blocked');
                 } else {
                     board.children[availableIdTwo].classList.add('available');
-                }
-                // Event listener to allow for moving pieces
-                board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
                     if(board.children[spotId].classList.contains('selected')) {
                         board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
                         board.children[spotId].innerHTML = '';
@@ -168,6 +179,7 @@ export class Check {
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 });
+                }
             }
 
             if(elementId == availableIdThree) {
@@ -175,9 +187,8 @@ export class Check {
                     console.log('blocked');
                 } else {
                     board.children[availableIdThree].classList.add('available');
-                }
-                // Event listener to allow for moving pieces
-                board.children[availableIdThree].addEventListener('click', function listenForClick(e) {
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdThree].addEventListener('click', function listenForClick(e) {
                     if(board.children[spotId].classList.contains('selected')) {
                         board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
                         board.children[spotId].innerHTML = '';
@@ -186,6 +197,7 @@ export class Check {
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 });
+                }
             }
 
             if(elementId == availableIdFour) {
@@ -193,9 +205,8 @@ export class Check {
                     console.log('blocked');
                 } else {
                     board.children[availableIdFour].classList.add('available');
-                }
-                // Event listener to allow for moving pieces
-                board.children[availableIdFour].addEventListener('click', function listenForClick(e) {
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdFour].addEventListener('click', function listenForClick(e) {
                     if(board.children[spotId].classList.contains('selected')) {
                         board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
                         board.children[spotId].innerHTML = '';
@@ -204,6 +215,78 @@ export class Check {
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 });
+                }
+            }
+
+            if(elementId == availableIdFive) {
+                if(board.children[availableIdFive].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdFive].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdFive].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdSix) {
+                if(board.children[availableIdSix].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdSix].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdSix].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+
+            if(elementId == availableIdSeven) {
+                if(board.children[availableIdSeven].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdSeven].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdSeven].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
+            }
+            if(elementId == availableIdEight) {
+                if(board.children[availableIdEight].classList.contains('hoverable')) {
+                    console.log('blocked');
+                } else {
+                    board.children[availableIdEight].classList.add('available');
+                    // Event listener to allow for moving pieces
+                    board.children[availableIdEight].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        e.target.className += ' white-knight hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                });
+                }
             }
         }
     }

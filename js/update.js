@@ -10,7 +10,7 @@ export default class Continue {
         currentTurn = turn;
         for(let i = 0; i < 64; i++) {
             // Reset all event listeners to allow for moving pieces more than once
-            board.children[i].removeEventListener('click', this.selectNone);
+            board.children[i].removeEventListener('click', this.selectPiece);
             board.children[i].removeEventListener('click', listenForClick);
 
             // This code will reset the board and guarantee that all of the highlighted squares are turned off
