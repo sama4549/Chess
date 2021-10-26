@@ -126,6 +126,16 @@ export default class Continue {
                         if(selected.classList.contains('white-king')) {
                             check.whiteKing(selected);
                         }
+
+                        // Check Rook
+                        if(selected.classList.contains('white-rook')) {
+                            check.whiteRook(selected);
+                        }
+
+                        // Check Queen
+                        if(selected.classList.contains('white-queen')) {
+                            check.whiteQueen(selected);
+                        }
                     }
                 }
     
