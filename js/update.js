@@ -20,6 +20,9 @@ export default class Continue {
             if(board.children[i].classList.contains('selected')) {
                 board.children[i].classList.remove('selected');
             }
+            if(board.children[i].classList.contains('attackable')) {
+                board.children[i].classList.remove('attackable');
+            }
 
             // Update Black Pieces
             if(board.children[i].classList.contains("black-rook")) {
@@ -96,6 +99,7 @@ export default class Continue {
         for (let i = 0; i < 63; i++) {
             setTimeout( () => {board.children[i].classList.remove('selected')} , 10);
             setTimeout( () => {board.children[i].classList.remove('available')} , 10);
+            setTimeout( () => {board.children[i].classList.remove('attackable')} , 10);
         }
     }
 

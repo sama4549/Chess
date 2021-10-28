@@ -37,7 +37,7 @@ export class Check {
                     // Event listener to allow for moving pieces
                     board.children[availableIdTwo].addEventListener('click', function listenForClick(e) {
                         if(board.children[spotId].classList.contains('selected')) {
-                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece', 'start');
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
@@ -121,7 +121,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9815';
                             e.target.className += ' white-bishop hoverable white-piece';
-                            playGame.updatePieces(currentTurn);
+                            playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
                         }
@@ -201,7 +201,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9814';
                             e.target.className += ' white-rook hoverable white-piece';
-                            playGame.updatePieces(currentTurn);
+                            playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
                         }
@@ -333,7 +333,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9813';
                             e.target.className += ' white-queen hoverable white-piece';
-                            playGame.updatePieces(currentTurn);
+                            playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
                         }
@@ -349,8 +349,24 @@ export class Check {
         const availableIds = [spotId - 17, spotId - 15, spotId - 6, spotId - 10, Number(spotId) + 17, Number(spotId) + 15, Number(spotId) + 10, Number(spotId) + 6];
 
         availableIds.forEach(id => {
-            if(board.children[id].classList.contains('hoverable')) {
+            if(board.children[id] === undefined || board.children[id].classList.contains('white-piece')) {
                 console.log('blocked');
+            } else if (board.children[id].classList.contains('black-piece')) {
+                board.children[id].classList.add('attackable');
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-knight', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        if (e.target.classList.contains('black')) {
+                            e.target.className = ' white-knight hoverable white-piece black';
+                        } else {
+                            e.target.className = ' white-knight hoverable white-piece';
+                        }
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+                // Moving onto a blank space
             } else {
                 board.children[id].classList.add('available');
                 // Event Listener to allow for moving pieces
@@ -373,11 +389,27 @@ export class Check {
         const availableIds = [spotId - 1, spotId - 9, spotId - 8, spotId - 7, Number(spotId) + 1, Number(spotId) + 9, Number(spotId) + 8, Number(spotId) + 7];
 
         availableIds.forEach(id => {
-            if(board.children[id].classList.contains('hoverable')) {
+            if(board.children[id] === undefined || board.children[id].classList.contains('white-piece')) {
                 console.log('blocked');
+                // Attacking another player's space
+            } else if (board.children[id].classList.contains('black-piece')) {
+                board.children[id].classList.add('attackable');
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9817';
+                        if (e.target.classList.contains('black')) {
+                            e.target.className = ' white-king hoverable white-piece black';
+                        } else {
+                            e.target.className = ' white-king hoverable white-piece';
+                        }
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+                // Moving onto a blank space
             } else {
                 board.children[id].classList.add('available');
-                // Event Listener to allow for moving pieces
                 board.children[id].addEventListener('click', function listenForClick(e) {
                     if(board.children[spotId].classList.contains('selected')) {
                         board.children[spotId].classList.remove('white-king', 'hoverable', 'white-piece');
