@@ -58,10 +58,15 @@ export class Check {
         let availableIds = [];
         for (let i = 1; i < 10; i++) {
             let upLeft = spotId - (9 * i);
-            if (upLeft === 0 || upLeft === 8 || upLeft === 16 || upLeft === 24 || upLeft === 32 || upLeft === 40 || upLeft === 48 || upLeft === 56) {
+            if (upLeft == 0 || upLeft == 1 || upLeft == 2 || upLeft == 3 || upLeft == 4 || upLeft == 5 || upLeft == 6 || upLeft == 8 || upLeft == 16 || upLeft == 24 || upLeft == 32 || upLeft == 40 || upLeft == 48 || upLeft == 56) {
                 availableIds.push(upLeft);
                 break;
-            } else if (boardArray[upLeft].classList.contains('hoverable')) {
+            } else if (boardArray[upLeft] === undefined) {
+                break;
+            } else if (boardArray[upLeft].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[upLeft].classList.contains('black-piece')) {
+                availableIds.push(upLeft);
                 break;
             } else {
                 availableIds.push(upLeft);
@@ -70,10 +75,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let upRight = spotId - (7 * i);
-            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
+            if (upRight == 1 || upRight == 2 || upRight == 3 || upRight == 4 || upRight == 5 || upRight == 6 || upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
                 availableIds.push(upRight);
                 break;
-            } else if (boardArray[upRight].classList.contains('hoverable')) {
+            } else if (boardArray[upRight] === undefined) {
+                break;
+            } else if (boardArray[upRight].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[upRight].classList.contains('black-piece')) {
+                availableIds.push(upRight);
                 break;
             } else {
                 availableIds.push(upRight);
@@ -82,12 +92,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let downLeft = Number(spotId) + Number((7 * i));
-            if (downLeft === 0 || downLeft === 8 || downLeft === 16 || downLeft === 24 || downLeft === 32 || downLeft === 40 || downLeft === 48 || downLeft === 56) {
+            if (downLeft == 0 || downLeft == 8 || downLeft == 16 || downLeft == 24 || downLeft == 32 || downLeft == 40 || downLeft == 48 || downLeft == 56 || downLeft == 57 || downLeft == 58 || downLeft == 59 || downLeft == 60 || downLeft == 61 || downLeft == 62 || downLeft == 63) {
                 availableIds.push(downLeft);
                 break;
             } else if (boardArray[downLeft] === undefined) {
                 break;
-            } else if (boardArray[downLeft].classList.contains('hoverable')) {
+            } else if (boardArray[downLeft].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[downLeft].classList.contains('black-piece')) {
+                availableIds.push(downLeft);
                 break;
             } else {
                 availableIds.push(downLeft);
@@ -96,12 +109,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let downRight = Number(spotId) + Number((9 * i));
-            if (downRight == 7 || downRight == 15 || downRight == 23 || downRight == 31 || downRight == 39 || downRight == 47 || downRight == 55 || downRight == 63 ) {
+            if (downRight == 7 || downRight == 15 || downRight == 23 || downRight == 31 || downRight == 39 || downRight == 47 || downRight == 55 || downRight == 57 || downRight == 58 || downRight == 59 || downRight == 60 || downRight == 61 || downRight == 62 || downRight == 63 ) {
                 availableIds.push(downRight);
                 break;
             } else if (boardArray[downRight] === undefined) {
                 break;
-            } else if (boardArray[downRight].classList.contains('hoverable')) {
+            } else if (boardArray[downRight].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[downRight].classList.contains('black-piece')) {
+                availableIds.push(downRight);
                 break;
             } else {
                 availableIds.push(downRight);
@@ -113,7 +129,22 @@ export class Check {
 
             boardArray.forEach(spot=> {
                 let spotName = spot.id;
-                if(spotName = id) {
+                if(board.children[id].classList.contains('black-piece')) {
+                    board.children[id].classList.add('attackable');
+                    board.children[id].addEventListener('click', function listenForClick(e) {
+                        if(spot.classList.contains('white-bishop') && spot.classList.contains('selected')) {
+                            spot.classList.remove('white-bishop', 'hoverable', 'white-piece');
+                            spot.innerHTML = '';
+                            e.target.innerHTML = '&#9815';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' white-bishop hoverable white-piece black';
+                            } else {
+                                e.target.className = ' white-bishop hoverable white-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        }
+                    })
+                } else if(spotName = id) {
                     board.children[id].classList.add('available');
                     board.children[id].addEventListener('click', function listenForClick(e) {
                         if(spot.classList.contains('white-bishop') && spot.classList.contains('selected')) {
@@ -141,7 +172,12 @@ export class Check {
             if (up === 0 || up === 8 || up === 16 || up === 24 || up === 32 || up === 40 || up === 48 || up === 56) {
                 availableIds.push(up);
                 break;
-            } else if (boardArray[up].classList.contains('hoverable')) {
+            } else if (boardArray[up] === undefined) {
+                break;
+            } else if (boardArray[up].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[up].classList.contains('black-piece')) {
+                availableIds.push(up);
                 break;
             } else {
                 availableIds.push(up);
@@ -153,7 +189,12 @@ export class Check {
             if (right == 7 || right == 15 || right == 23 || right == 31 || right == 39 || right == 47 || right == 55 || right == 63) {
                 availableIds.push(right);
                 break;
-            } else if (boardArray[right].classList.contains('hoverable')) {
+            } else if (boardArray[right] === undefined) {
+                break;
+            } else if (boardArray[right].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[right].classList.contains('black-piece')) {
+                availableIds.push(right);
                 break;
             } else {
                 availableIds.push(right);
@@ -167,7 +208,10 @@ export class Check {
                 break;
             } else if (boardArray[down] === undefined) {
                 break;
-            } else if (boardArray[down].classList.contains('hoverable')) {
+            } else if (boardArray[down].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[down].classList.contains('black-piece')) {
+                availableIds.push(down);
                 break;
             } else {
                 availableIds.push(down);
@@ -181,7 +225,10 @@ export class Check {
                 break;
             } else if (boardArray[left] === undefined) {
                 break;
-            } else if (boardArray[left].classList.contains('hoverable')) {
+            } else if (boardArray[left].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[left].classList.contains('black-piece')) {
+                availableIds.push(left);
                 break;
             } else {
                 availableIds.push(left);
@@ -193,7 +240,23 @@ export class Check {
 
             boardArray.forEach(spot=> {
                 let spotName = spot.id;
-                if(spotName = id) {
+
+                if(board.children[id].classList.contains('black-piece')) {
+                    board.children[id].classList.add('attackable');
+                    board.children[id].addEventListener('click', function listenForClick(e) {
+                        if(spot.classList.contains('white-rook') && spot.classList.contains('selected')) {
+                            spot.classList.remove('white-rook', 'hoverable', 'white-piece');
+                            spot.innerHTML = '';
+                            e.target.innerHTML = '&#9814';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' white-rook hoverable white-piece black';
+                            } else {
+                                e.target.className = ' white-rook hoverable white-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        }
+                    })
+                } else if(spotName = id) {
                     board.children[id].classList.add('available');
                     board.children[id].addEventListener('click', function listenForClick(e) {
                         if(spot.classList.contains('white-rook') && spot.classList.contains('selected')) {
@@ -218,10 +281,15 @@ export class Check {
         let availableIds = [];
         for (let i = 1; i < 10; i++) {
             let up = spotId - (8 * i);
-            if (up === 0 || up === 8 || up === 16 || up === 24 || up === 32 || up === 40 || up === 48 || up === 56) {
+            if (up === 0 || up === 1 || up === 2 || up === 3 || up === 4 || up === 5 || up === 6 || up === 7) {
                 availableIds.push(up);
                 break;
-            } else if (boardArray[up].classList.contains('hoverable')) {
+            } else if (boardArray[up] === undefined) {
+                break;
+            } else if (boardArray[up].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[up].classList.contains('black-piece')) {
+                availableIds.push(up);
                 break;
             } else {
                 availableIds.push(up);
@@ -233,7 +301,12 @@ export class Check {
             if (right == 7 || right == 15 || right == 23 || right == 31 || right == 39 || right == 47 || right == 55 || right == 63) {
                 availableIds.push(right);
                 break;
-            } else if (boardArray[right].classList.contains('hoverable')) {
+            } else if (boardArray[right] === undefined) {
+                break;
+            } else if (boardArray[right].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[right].classList.contains('black-piece')) {
+                availableIds.push(right);
                 break;
             } else {
                 availableIds.push(right);
@@ -242,26 +315,32 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let down = spotId + (8 * i);
-            if (down === 0 || down === 8 || down === 16 || down === 24 || down === 32 || down === 40 || down === 48 || down === 56) {
+            if (down === 56 || down === 57 || down === 58 || down === 59 || down === 60 || down === 61 || down === 62 || down === 63) {
                 availableIds.push(down);
                 break;
             } else if (boardArray[down] === undefined) {
                 break;
-            } else if (boardArray[down].classList.contains('hoverable')) {
+            } else if (boardArray[down].classList.contains('white-piece')) {
                 break;
-            } else {
+            } else if (boardArray[down].classList.contains('black-piece')) {
+                availableIds.push(down);
+                break;
+            }  else {
                 availableIds.push(down);
             }
         }
 
         for (let i = 1; i < 10; i++) {
             let left = spotId - i;
-            if (left == 7 || left == 15 || left == 23 || left == 31 || left == 39 || left == 47 || left == 55 || left == 63 ) {
+            if (left == 0 || left == 8 || left == 16 || left == 24 || left == 32 || left == 40 || left == 48 || left == 56 ) {
                 availableIds.push(left);
                 break;
             } else if (boardArray[left] === undefined) {
                 break;
-            } else if (boardArray[left].classList.contains('hoverable')) {
+            } else if (boardArray[left].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[left].classList.contains('black-piece')) {
+                availableIds.push(left);
                 break;
             } else {
                 availableIds.push(left);
@@ -270,10 +349,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let upLeft = spotId - (9 * i);
-            if (upLeft === 0 || upLeft === 8 || upLeft === 16 || upLeft === 24 || upLeft === 32 || upLeft === 40 || upLeft === 48 || upLeft === 56) {
+            if (upLeft == 0 || upLeft == 1 || upLeft == 2 || upLeft == 3 || upLeft == 4 || upLeft == 5 || upLeft == 6 || upLeft == 8 || upLeft == 16 || upLeft == 24 || upLeft == 32 || upLeft == 40 || upLeft == 48 || upLeft == 56) {
                 availableIds.push(upLeft);
                 break;
-            } else if (boardArray[upLeft].classList.contains('hoverable')) {
+            } else if (boardArray[upLeft] === undefined) {
+                break;
+            } else if (boardArray[upLeft].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[upLeft].classList.contains('black-piece')) {
+                availableIds.push(upLeft);
                 break;
             } else {
                 availableIds.push(upLeft);
@@ -282,10 +366,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let upRight = spotId - (7 * i);
-            if (upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
+            if (upRight == 1 || upRight == 2 || upRight == 3 || upRight == 4 || upRight == 5 || upRight == 6 || upRight == 7 || upRight == 15 || upRight == 23 || upRight == 31 || upRight == 39 || upRight == 47 || upRight == 55 || upRight == 63) {
                 availableIds.push(upRight);
                 break;
-            } else if (boardArray[upRight].classList.contains('hoverable')) {
+            } else if (boardArray[upRight] === undefined) {
+                break;
+            } else if (boardArray[upRight].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[upRight].classList.contains('black-piece')) {
+                availableIds.push(upRight);
                 break;
             } else {
                 availableIds.push(upRight);
@@ -294,12 +383,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let downLeft = Number(spotId) + Number((7 * i));
-            if (downLeft === 0 || downLeft === 8 || downLeft === 16 || downLeft === 24 || downLeft === 32 || downLeft === 40 || downLeft === 48 || downLeft === 56) {
+            if (downLeft == 0 || downLeft == 8 || downLeft == 16 || downLeft == 24 || downLeft == 32 || downLeft == 40 || downLeft == 48 || downLeft == 56 || downLeft == 57 || downLeft == 58 || downLeft == 59 || downLeft == 60 || downLeft == 61 || downLeft == 62 || downLeft == 63) {
                 availableIds.push(downLeft);
                 break;
             } else if (boardArray[downLeft] === undefined) {
                 break;
-            } else if (boardArray[downLeft].classList.contains('hoverable')) {
+            } else if (boardArray[downLeft].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[downLeft].classList.contains('black-piece')) {
+                availableIds.push(downLeft);
                 break;
             } else {
                 availableIds.push(downLeft);
@@ -308,12 +400,15 @@ export class Check {
 
         for (let i = 1; i < 10; i++) {
             let downRight = Number(spotId) + Number((9 * i));
-            if (downRight == 7 || downRight == 15 || downRight == 23 || downRight == 31 || downRight == 39 || downRight == 47 || downRight == 55 || downRight == 63 ) {
+            if (downRight == 7 || downRight == 15 || downRight == 23 || downRight == 31 || downRight == 39 || downRight == 47 || downRight == 55 || downRight == 57 || downRight == 58 || downRight == 59 || downRight == 60 || downRight == 61 || downRight == 62 || downRight == 63 ) {
                 availableIds.push(downRight);
                 break;
             } else if (boardArray[downRight] === undefined) {
                 break;
-            } else if (boardArray[downRight].classList.contains('hoverable')) {
+            } else if (boardArray[downRight].classList.contains('white-piece')) {
+                break;
+            } else if (boardArray[downRight].classList.contains('black-piece')) {
+                availableIds.push(downRight);
                 break;
             } else {
                 availableIds.push(downRight);
@@ -325,7 +420,23 @@ export class Check {
 
             boardArray.forEach(spot=> {
                 let spotName = spot.id;
-                if(spotName = id) {
+
+                if(board.children[id].classList.contains('black-piece')) {
+                    board.children[id].classList.add('attackable');
+                    board.children[id].addEventListener('click', function listenForClick(e) {
+                        if(spot.classList.contains('white-queen') && spot.classList.contains('selected')) {
+                            spot.classList.remove('white-queen', 'hoverable', 'white-piece');
+                            spot.innerHTML = '';
+                            e.target.innerHTML = '&#9813';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' white-queen hoverable white-piece black';
+                            } else {
+                                e.target.className = ' white-queen hoverable white-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
+                        }
+                    })
+                } else if(spotName = id) {
                     board.children[id].classList.add('available');
                     board.children[id].addEventListener('click', function listenForClick(e) {
                         if(spot.classList.contains('white-queen') && spot.classList.contains('selected')) {
