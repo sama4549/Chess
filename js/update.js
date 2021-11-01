@@ -146,6 +146,32 @@ export default class Continue {
                 if(currentTurn === 'black') {
                     if(selected.classList.contains('black-piece')) {
                         selected.classList.add('selected');
+                        // Check Pawns
+                        if(selected.classList.contains('black-pawn')) {
+                            check.blackPawn(selected);
+                        }
+                        // Check Knights
+                        if(selected.classList.contains('black-knight')) {
+                            check.blackKnight(selected);
+                        }
+                        // Check Bishops
+                        if(selected.classList.contains('black-bishop')) {
+                            check.blackBishop(selected);
+                        }
+                        // Check King
+                        if(selected.classList.contains('black-king')) {
+                            check.blackKing(selected);
+                        }
+
+                        // Check Rook
+                        if(selected.classList.contains('black-rook')) {
+                            check.blackRook(selected);
+                        }
+
+                        // Check Queen
+                        if(selected.classList.contains('black-queen')) {
+                            check.blackQueen(selected);
+                        }
                     }
                 }
             }

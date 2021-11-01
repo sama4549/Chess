@@ -6,7 +6,7 @@ import { Check } from './check.js';
 const startButton = document.getElementById('start-button');
 const startGame = document.getElementById('start-game');
 const board = document.getElementById('board');
-export let currentTurn = 'white';
+export let currentTurn = 'black';
 
 // Event Listeners
 startButton.addEventListener('click', init);
@@ -97,8 +97,8 @@ class ChessBoard {
         document.getElementById('5').className += ' black-bishop black-piece';
         document.getElementById('6').className += ' black-knight black-piece';
         document.getElementById('7').className += ' black-rook black-piece';
-        document.getElementById('8').className += ' black-pawn black-piece';
-        document.getElementById('9').className += ' black-pawn black-piece';
+        document.getElementById('8').className += ' black-pawn black-piece start';
+        document.getElementById('9').className += ' black-pawn black-piece start';
         document.getElementById('10').className += ' black-pawn black-piece start';
         document.getElementById('11').className += ' black-pawn black-piece start';
         document.getElementById('12').className += ' black-pawn black-piece start';
