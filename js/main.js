@@ -6,7 +6,8 @@ import { Check } from './check.js';
 const startButton = document.getElementById('start-button');
 const startGame = document.getElementById('start-game');
 const board = document.getElementById('board');
-export let currentTurn = 'black';
+export let currentTurn = 'white';
+let screenTurn = document.getElementById('current-turn');
 
 // Event Listeners
 startButton.addEventListener('click', init);
@@ -123,5 +124,15 @@ class ChessBoard {
         document.getElementById('61').className += ' white-bishop white-piece';
         document.getElementById('62').className += ' white-knight white-piece';
         document.getElementById('63').className += ' white-rook white-piece';
+    }
+}
+
+export default function updateTurn() {
+    if(currentTurn == 'black') {
+        currentTurn = 'white';
+        screenTurn.innerText = 'black';
+    } else if (currentTurn == 'white') {
+        currentTurn = 'black';
+        screenTurn.innerText = 'white';
     }
 }

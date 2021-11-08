@@ -1019,6 +1019,46 @@ export class Check {
         })
     }
 
+    blackKnight(selected) {
+        // Light up available sections
+        const spotId = selected.id;
+        const availableIds = [Number(spotId) + 17, Number(spotId) + 15, Number(spotId) + 6, Number(spotId) + 10, spotId - 17, spotId - 15, spotId - 10, spotId - 6];
+
+        availableIds.forEach(id => {
+            if(board.children[id] === undefined || board.children[id].classList.contains('black-piece')) {
+                console.log('blocked');
+            } else if (board.children[id].classList.contains('white-piece')) {
+                board.children[id].classList.add('attackable');
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('black-knight', 'hoverable', 'black-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9822';
+                        if (e.target.classList.contains('black')) {
+                            e.target.className = ' black-knight hoverable black-piece black';
+                        } else {
+                            e.target.className = ' black-knight hoverable black-piece';
+                        }
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+                // Moving onto a blank space
+            } else {
+                board.children[id].classList.add('available');
+                // Event Listener to allow for moving pieces
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('black-knight', 'hoverable', 'black-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9822';
+                        e.target.className += ' black-knight hoverable black-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+            }
+        })
+    }
+
     whiteKing(selected) {
         // Light up available sections
         const spotId = selected.id;
@@ -1052,6 +1092,46 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9812';
                         e.target.className += ' white-king hoverable white-piece';
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+            }
+        });
+    }
+
+    blackKing(selected) {
+        // Light up available sections
+        const spotId = selected.id;
+        const availableIds = [Number(spotId) + 1, Number(spotId) + 9, Number(spotId) + 8, Number(spotId) + 7, spotId - 1, spotId - 9, spotId - 8, spotId - 7];
+
+        availableIds.forEach(id => {
+            if(board.children[id] === undefined || board.children[id].classList.contains('black-piece')) {
+                console.log('blocked');
+                // Attacking another player's space
+            } else if (board.children[id].classList.contains('white-piece')) {
+                board.children[id].classList.add('attackable');
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('black-king', 'hoverable', 'black-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9818';
+                        if (e.target.classList.contains('black')) {
+                            e.target.className = ' black-king hoverable black-piece black';
+                        } else {
+                            e.target.className = ' black-king hoverable black-piece';
+                        }
+                        playGame.updatePieces(currentTurn, listenForClick);
+                    }
+                })
+                // Moving onto a blank space
+            } else {
+                board.children[id].classList.add('available');
+                board.children[id].addEventListener('click', function listenForClick(e) {
+                    if(board.children[spotId].classList.contains('selected')) {
+                        board.children[spotId].classList.remove('black-king', 'hoverable', 'black-piece');
+                        board.children[spotId].innerHTML = '';
+                        e.target.innerHTML = '&#9818';
+                        e.target.className += ' black-king hoverable black-piece';
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })

@@ -1,5 +1,6 @@
 // Imports
 import { Check } from './check.js';
+import updateTurn from './main.js';
 
 let currentTurn;
 const check = new Check();
@@ -8,6 +9,7 @@ export default class Continue {
 
     updatePieces(turn, listenForClick) {
         currentTurn = turn;
+        updateTurn();
         for(let i = 0; i < 64; i++) {
             // Reset all event listeners to allow for moving pieces more than once
             board.children[i].removeEventListener('click', this.selectPiece);
