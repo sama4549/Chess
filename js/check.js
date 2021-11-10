@@ -1027,6 +1027,10 @@ export class Check {
         availableIds.forEach(id => {
             if(board.children[id] === undefined || board.children[id].classList.contains('black-piece')) {
                 console.log('blocked');
+            } else if (board.children[spotId].classList.contains('edge-right') && board.children[id].classList.contains('edge-left')) {
+                console.log('You are standing on the right edge!!');
+            } else if (board.children[spotId].classList.contains('edge-left') && board.children[id].classList.contains('edge-right')) {
+                console.log('You are standing on the left edge!!');
             } else if (board.children[id].classList.contains('white-piece')) {
                 board.children[id].classList.add('attackable');
                 board.children[id].addEventListener('click', function listenForClick(e) {
@@ -1034,8 +1038,17 @@ export class Check {
                         board.children[spotId].classList.remove('black-knight', 'hoverable', 'black-piece');
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9822';
+                        // START HERE ------- ADD CHECKS TO KEEP EDGE CLASS NAMES AFTER ATTACKING ANOTHER PIECE -- WHY DOES SPOT 56 LOSE ITS EDGE CLASS NAME
                         if (e.target.classList.contains('black')) {
                             e.target.className = ' black-knight hoverable black-piece black';
+                        } else if (e.target.classList.contains('edge-left')) {
+                            e.target.className = ' black-knight hoverable black-piece edge-left';
+                        } else if (e.target.classList.contains('edge-right')) {
+                            e.target.className = ' black-knight hoverable black-piece edge-right';
+                        } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-left')) {
+                            e.target.className = ' black-knight hoverable black-piece edge-left black';
+                        } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-right')) {
+                            e.target.className = ' black-knight hoverable black-piece edge-right black';
                         } else {
                             e.target.className = ' black-knight hoverable black-piece';
                         }
@@ -1068,6 +1081,10 @@ export class Check {
             if(board.children[id] === undefined || board.children[id].classList.contains('white-piece')) {
                 console.log('blocked');
                 // Attacking another player's space
+            } else if (board.children[spotId].classList.contains('edge-right') && board.children[id].classList.contains('edge-left')) {
+                console.log('You are standing on the right side edge!!');
+            } else if (board.children[spotId].classList.contains('edge-left') && board.children[id].classList.contains('edge-right')) {
+                console.log('You are standing on the left side edge!!');
             } else if (board.children[id].classList.contains('black-piece')) {
                 board.children[id].classList.add('attackable');
                 board.children[id].addEventListener('click', function listenForClick(e) {
@@ -1108,6 +1125,10 @@ export class Check {
             if(board.children[id] === undefined || board.children[id].classList.contains('black-piece')) {
                 console.log('blocked');
                 // Attacking another player's space
+            } else if (board.children[spotId].classList.contains('edge-left') && board.children[id].classList.contains('edge-right')) {
+                console.log('you are standing on the right edge!!');
+            } else if (board.children[spotId].classList.contains('edge-right') && board.children[id].classList.contains('edge-left')) {
+                console.log('You are standing on the left edge!!');
             } else if (board.children[id].classList.contains('white-piece')) {
                 board.children[id].classList.add('attackable');
                 board.children[id].addEventListener('click', function listenForClick(e) {
