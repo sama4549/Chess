@@ -52,38 +52,49 @@ export class Check {
             }
 
             if (board.children[attackableIdOne].classList.contains('black-piece')) {
-                board.children[attackableIdOne].classList.add('attackable');
-                board.children[attackableIdOne].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        if (e.target.classList.contains('black')) {
-                            e.target.className = ' white-pawn hoverable white-piece black';
-                        } else {
-                            e.target.className = ' white-pawn hoverable white-piece';
+                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdOne].classList.contains('edge-right')) {
+                    console.log('attacking piece blocked');
+                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdOne].classList.contains('edge-left')) {
+                    console.log('attacking piece blocked');
+                } else {
+                    board.children[attackableIdOne].classList.add('attackable');
+                    board.children[attackableIdOne].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' white-pawn hoverable white-piece black';
+                            } else {
+                                e.target.className = ' white-pawn hoverable white-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
                         }
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    }
-                })
+                    })
+                }
             }
             
             if (board.children[attackableIdTwo].classList.contains('black-piece')) {
-                board.children[attackableIdTwo].classList.add('attackable');
-                board.children[attackableIdTwo].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        if (e.target.classList.contains('black')) {
-                            e.target.className = ' white-pawn hoverable white-piece black';
-                        } else {
-                            e.target.className = ' white-pawn hoverable white-piece';
+                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdTwo].classList.contains('edge-right')) {
+                    console.log('attacking piece blocked');
+                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdTwo].classList.contains('edge-left')) {
+                    console.log('attacking piece blocked');
+                } else {
+                    board.children[attackableIdTwo].classList.add('attackable');
+                    board.children[attackableIdTwo].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' white-pawn hoverable white-piece black';
+                            } else {
+                                e.target.className = ' white-pawn hoverable white-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
                         }
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    }
-                })
-            } 
+                    })
+            } }
         }
     }
 
@@ -117,6 +128,7 @@ export class Check {
                 }
             }
             // If pawn is on the starting position
+            ///////////////////////START HERE -- Black pawns can still attack accross the board///////////////////////////////
             if(elementId == availableIdTwo && selected.classList.contains('start')) {
                 if (board.children[availableIdTwo].classList.contains('hoverable')) {
                     console.log('blocked');
@@ -138,37 +150,49 @@ export class Check {
             }
 
             if (board.children[attackableIdOne].classList.contains('white-piece')) {
-                board.children[attackableIdOne].classList.add('attackable');
-                board.children[attackableIdOne].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        if (e.target.classList.contains('black')) {
-                            e.target.className = ' black-pawn hoverable black-piece black';
-                        } else {
-                            e.target.className = ' black-pawn hoverable black-piece';
+                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdTwo].classList.contains('edge-right')) {
+                    console.log('attacking piece blocked');
+                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdTwo].classList.contains('edge-left')) {
+                    console.log('attacking piece blocked');
+                } else {
+                    board.children[attackableIdOne].classList.add('attackable');
+                    board.children[attackableIdOne].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' black-pawn hoverable black-piece black';
+                            } else {
+                                e.target.className = ' black-pawn hoverable black-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
                         }
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    }
-                })
+                    })
+                }
             }
             
             if (board.children[attackableIdTwo].classList.contains('white-piece')) {
-                board.children[attackableIdTwo].classList.add('attackable');
-                board.children[attackableIdTwo].addEventListener('click', function listenForClick(e) {
-                    if(board.children[spotId].classList.contains('selected')) {
-                        board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
-                        board.children[spotId].innerHTML = '';
-                        e.target.innerHTML = '&#9817';
-                        if (e.target.classList.contains('black')) {
-                            e.target.className = ' black-pawn hoverable black-piece black';
-                        } else {
-                            e.target.className = ' black-pawn hoverable black-piece';
+                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdTwo].classList.contains('edge-right')) {
+                    console.log('attacking piece blocked');
+                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdTwo].classList.contains('edge-left')) {
+                    console.log('attacking piece blocked');
+                } else {
+                    board.children[attackableIdTwo].classList.add('attackable');
+                    board.children[attackableIdTwo].addEventListener('click', function listenForClick(e) {
+                        if(board.children[spotId].classList.contains('selected')) {
+                            board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
+                            board.children[spotId].innerHTML = '';
+                            e.target.innerHTML = '&#9817';
+                            if (e.target.classList.contains('black')) {
+                                e.target.className = ' black-pawn hoverable black-piece black';
+                            } else {
+                                e.target.className = ' black-pawn hoverable black-piece';
+                            }
+                            playGame.updatePieces(currentTurn, listenForClick);
                         }
-                        playGame.updatePieces(currentTurn, listenForClick);
-                    }
-                })
+                    })
+                }
             } 
         }
     }
