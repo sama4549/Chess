@@ -24,6 +24,26 @@ body {
     margin: 0 auto;
 }
 
+// Promotion Selection List
+#promotion-selection {
+    display: none;
+
+    #list-title {
+        text-align: center;
+    }
+
+    .list-group {
+        width: 30%;
+        margin: 0 auto;
+        text-align: center;
+
+        li:hover {
+            background-color: cadetblue;
+            cursor: pointer;
+        }
+    }
+}
+
 // Chess Board
 #board {
     justify-content: center;

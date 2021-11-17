@@ -25,6 +25,9 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
+                            if(e.target.classList.contains('end-black')) {
+                                console.log('end reached');
+                            }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     });
@@ -43,6 +46,9 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
+                            if(e.target.classList.contains('end-black')) {
+                                console.log('end reached');
+                            }
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -51,6 +57,7 @@ export class Check {
                 }
             }
 
+            // Attacking Other Pieces
             if (board.children[attackableIdOne].classList.contains('black-piece')) {
                 if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdOne].classList.contains('edge-right')) {
                     console.log('attacking piece blocked');
@@ -63,10 +70,29 @@ export class Check {
                             board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
-                            if (e.target.classList.contains('black')) {
+                            if (e.target.classList.contains('black') && e.target.classList.contains('edge-left')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-left black';
+                            } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right black';
+                            } else if (e.target.classList.contains('edge-left')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-left';
+                            } else if (e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right';
+                            } else if (e.target.classList.contains('black')) {
                                 e.target.className = ' white-pawn hoverable white-piece black';
+                            } else if (e.target.classList.contains('end-black')) {
+                                e.target.className = ' white-pawn hoverable white-piece end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right black end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('black')) {
+                                e.target.className = ' white-pawn hoverable white-piece black end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = 'white-pawn hoverable white-piece end-black edge-left';
                             } else {
                                 e.target.className = ' white-pawn hoverable white-piece';
+                            }
+                            if(e.target.classList.contains('end-black')) {
+                                console.log('end reached');
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -86,10 +112,29 @@ export class Check {
                             board.children[spotId].classList.remove('white-pawn', 'hoverable', 'white-piece');
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
-                            if (e.target.classList.contains('black')) {
+                            if (e.target.classList.contains('black') && e.target.classList.contains('edge-left')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-left black';
+                            } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right black';
+                            } else if (e.target.classList.contains('edge-left')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-left';
+                            } else if (e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right';
+                            } else if (e.target.classList.contains('black')) {
                                 e.target.className = ' white-pawn hoverable white-piece black';
+                            } else if (e.target.classList.contains('end-black')) {
+                                e.target.className = ' white-pawn hoverable white-piece end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' white-pawn hoverable white-piece edge-right black end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('black')) {
+                                e.target.className = ' white-pawn hoverable white-piece black end-black';
+                            } else if (e.target.classList.contains('end-black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = 'white-pawn hoverable white-piece end-black edge-left';
                             } else {
                                 e.target.className = ' white-pawn hoverable white-piece';
+                            }
+                            if(e.target.classList.contains('end-black')) {
+                                console.log('end reached');
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -122,6 +167,9 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9823';
                             e.target.className += ' black-pawn hoverable black-piece';
+                            if(e.target.classList.contains('end-white')) {
+                                console.log('end reached');
+                            }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     });
@@ -141,6 +189,9 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9823';
                             e.target.className += ' black-pawn hoverable black-piece';
+                            if(e.target.classList.contains('end-white')) {
+                                console.log('end reached');
+                            }
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -149,10 +200,11 @@ export class Check {
                 }
             }
 
+            // Attacking Other Pieces
             if (board.children[attackableIdOne].classList.contains('white-piece')) {
-                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdTwo].classList.contains('edge-right')) {
+                if (board.children[spotId].classList.contains('edge-left') && board.children[attackableIdOne].classList.contains('edge-right')) {
                     console.log('attacking piece blocked');
-                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdTwo].classList.contains('edge-left')) {
+                } else if (board.children[spotId].classList.contains('edge-right') && board.children[attackableIdOne].classList.contains('edge-left')) {
                     console.log('attacking piece blocked');
                 } else {
                     board.children[attackableIdOne].classList.add('attackable');
@@ -161,10 +213,29 @@ export class Check {
                             board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
-                            if (e.target.classList.contains('black')) {
+                            if (e.target.classList.contains('black') && e.target.classList.contains('edge-left')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-left black';
+                            } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right black';
+                            } else if (e.target.classList.contains('edge-left')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-left';
+                            } else if (e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right';
+                            } else if (e.target.classList.contains('black')) {
                                 e.target.className = ' black-pawn hoverable black-piece black';
+                            } else if (e.target.classList.contains('end-white')) {
+                                e.target.className = ' black-pawn hoverable black-piece end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right black end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('black')) {
+                                e.target.className = ' black-pawn hoverable black-piece black end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('edge-right')) {
+                                e.target.className = 'black-pawn hoverable black-piece end-white edge-left';
                             } else {
                                 e.target.className = ' black-pawn hoverable black-piece';
+                            }
+                            if(e.target.classList.contains('end-white')) {
+                                console.log('end reached');
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -184,10 +255,29 @@ export class Check {
                             board.children[spotId].classList.remove('black-pawn', 'hoverable', 'black-piece');
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
-                            if (e.target.classList.contains('black')) {
+                            if (e.target.classList.contains('black') && e.target.classList.contains('edge-left')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-left black';
+                            } else if (e.target.classList.contains('black') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right black';
+                            } else if (e.target.classList.contains('edge-left')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-left';
+                            } else if (e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right';
+                            } else if (e.target.classList.contains('black')) {
                                 e.target.className = ' black-pawn hoverable black-piece black';
+                            } else if (e.target.classList.contains('end-white')) {
+                                e.target.className = ' black-pawn hoverable black-piece end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('edge-right')) {
+                                e.target.className = ' black-pawn hoverable black-piece edge-right black end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('black')) {
+                                e.target.className = ' black-pawn hoverable black-piece black end-white';
+                            } else if (e.target.classList.contains('end-white') && e.target.classList.contains('edge-right')) {
+                                e.target.className = 'black-pawn hoverable black-piece end-white edge-left';
                             } else {
                                 e.target.className = ' black-pawn hoverable black-piece';
+                            }
+                            if(e.target.classList.contains('end-white')) {
+                                console.log('end reached');
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }

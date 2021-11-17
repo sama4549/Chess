@@ -90,14 +90,14 @@ class ChessBoard {
 
     createPieces() {
         // Create Black Pieces
-        document.getElementById('0').className += ' black-rook black-piece edge-left';
-        document.getElementById('1').className += ' black-knight black-piece edge-left';
-        document.getElementById('2').className += ' black-bishop black-piece';
-        document.getElementById('3').className += ' black-queen black-piece';
-        document.getElementById('4').className += ' black-king black-piece';
-        document.getElementById('5').className += ' black-bishop black-piece';
-        document.getElementById('6').className += ' black-knight black-piece edge-right';
-        document.getElementById('7').className += ' black-rook black-piece edge-right';
+        document.getElementById('0').className += ' black-rook black-piece edge-left end-black';
+        document.getElementById('1').className += ' black-knight black-piece edge-left end-black';
+        document.getElementById('2').className += ' black-bishop black-piece end-black';
+        document.getElementById('3').className += ' black-queen black-piece end-black';
+        document.getElementById('4').className += ' black-king black-piece end-black';
+        document.getElementById('5').className += ' black-bishop black-piece end-black';
+        document.getElementById('6').className += ' black-knight black-piece edge-right end-black';
+        document.getElementById('7').className += ' black-rook black-piece edge-right end-black';
         document.getElementById('8').className += ' black-pawn black-piece start edge-left';
         document.getElementById('9').className += ' black-pawn black-piece start edge-left';
         document.getElementById('10').className += ' black-pawn black-piece start';
@@ -132,14 +132,14 @@ class ChessBoard {
         document.getElementById('53').className += ' white-pawn white-piece start';
         document.getElementById('54').className += ' white-pawn white-piece start edge-right';
         document.getElementById('55').className += ' white-pawn white-piece start edge-right';
-        document.getElementById('56').className += ' white-rook white-piece edge-left';
-        document.getElementById('57').className += ' white-knight white-piece edge-left';
-        document.getElementById('58').className += ' white-bishop white-piece';
-        document.getElementById('59').className += ' white-queen white-piece';
-        document.getElementById('60').className += ' white-king white-piece';
-        document.getElementById('61').className += ' white-bishop white-piece';
-        document.getElementById('62').className += ' white-knight white-piece edge-right';
-        document.getElementById('63').className += ' white-rook white-piece edge-right';
+        document.getElementById('56').className += ' white-rook white-piece edge-left end-white';
+        document.getElementById('57').className += ' white-knight white-piece edge-left end-white';
+        document.getElementById('58').className += ' white-bishop white-piece end-white';
+        document.getElementById('59').className += ' white-queen white-piece end-white';
+        document.getElementById('60').className += ' white-king white-piece end-white';
+        document.getElementById('61').className += ' white-bishop white-piece end-white';
+        document.getElementById('62').className += ' white-knight white-piece edge-right end-white';
+        document.getElementById('63').className += ' white-rook white-piece edge-right end-white';
     }
 }
 
