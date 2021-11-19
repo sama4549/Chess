@@ -179,4 +179,24 @@ export default class Continue {
             }
         }, 10);
     }
+
+    // Promote Pawn
+    promotePawn(piece) {
+        const promotionSelection = document.getElementById('promotion-selection');
+        const promotionList = document.getElementById('promotion-list');
+        const promotionListArray = Array.prototype.slice.call(promotionList.children);
+        promotionListArray.forEach(list => list.addEventListener('click', () => {
+            if(piece.classList.contains('white-piece')) {
+                piece.classList.remove('white-pawn');
+                piece.innerHTML = list.dataset.whitepiece;
+                piece.classList.add(list.dataset.whitename);
+                promotionSelection.style.display = 'none';
+            } else {
+                piece.classList.remove('black-pawn');
+                piece.innerHTML = list.dataset.blackpiece;
+                piece.classList.add(list.dataset.blackname);
+                promotionSelection.style.display = 'none';
+            }
+        }));
+    }
 }

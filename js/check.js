@@ -26,7 +26,8 @@ export class Check {
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
                             if(e.target.classList.contains('end-black')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -47,7 +48,8 @@ export class Check {
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
                             if(e.target.classList.contains('end-black')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
@@ -92,7 +94,8 @@ export class Check {
                                 e.target.className = ' white-pawn hoverable white-piece';
                             }
                             if(e.target.classList.contains('end-black')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -134,7 +137,8 @@ export class Check {
                                 e.target.className = ' white-pawn hoverable white-piece';
                             }
                             if(e.target.classList.contains('end-black')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -168,7 +172,8 @@ export class Check {
                             e.target.innerHTML = '&#9823';
                             e.target.className += ' black-pawn hoverable black-piece';
                             if(e.target.classList.contains('end-white')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -190,7 +195,8 @@ export class Check {
                             e.target.innerHTML = '&#9823';
                             e.target.className += ' black-pawn hoverable black-piece';
                             if(e.target.classList.contains('end-white')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
@@ -235,7 +241,8 @@ export class Check {
                                 e.target.className = ' black-pawn hoverable black-piece';
                             }
                             if(e.target.classList.contains('end-white')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
@@ -277,7 +284,8 @@ export class Check {
                                 e.target.className = ' black-pawn hoverable black-piece';
                             }
                             if(e.target.classList.contains('end-white')) {
-                                console.log('end reached');
+                                document.getElementById('promotion-selection').style.display = 'block';
+                                playGame.promotePawn(e.target);
                             }
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
