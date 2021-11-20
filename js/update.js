@@ -15,6 +15,11 @@ export default class Continue {
             board.children[i].removeEventListener('click', this.selectPiece);
             board.children[i].removeEventListener('click', listenForClick);
 
+            // Reset all event listeners by cloning all nodes on the board
+            let oldBoardSpot = board.children[i];
+            let newBoardSpot = oldBoardSpot.cloneNode(true);
+            oldBoardSpot.parentNode.replaceChild(newBoardSpot, oldBoardSpot);
+
             // This code will reset the board and guarantee that all of the highlighted squares are turned off
             if(board.children[i].classList.contains('available')) {
                 board.children[i].classList.remove('available');
