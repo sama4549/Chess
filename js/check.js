@@ -47,10 +47,7 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9817';
                             e.target.className += ' white-pawn hoverable white-piece';
-                            if(e.target.classList.contains('end-black')) {
-                                document.getElementById('promotion-selection').style.display = 'block';
-                                playGame.promotePawn(e.target);
-                            }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -194,10 +191,7 @@ export class Check {
                             board.children[spotId].innerHTML = '';
                             e.target.innerHTML = '&#9823';
                             e.target.className += ' black-pawn hoverable black-piece';
-                            if(e.target.classList.contains('end-white')) {
-                                document.getElementById('promotion-selection').style.display = 'block';
-                                playGame.promotePawn(e.target);
-                            }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -283,11 +277,11 @@ export class Check {
                             } else {
                                 e.target.className = ' black-pawn hoverable black-piece';
                             }
+                            playGame.updatePieces(currentTurn, listenForClick);
                             if(e.target.classList.contains('end-white')) {
                                 document.getElementById('promotion-selection').style.display = 'block';
                                 playGame.promotePawn(e.target);
                             }
-                            playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
                 }
@@ -385,6 +379,7 @@ export class Check {
                             } else {
                                 e.target.className = ' white-bishop hoverable white-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -396,6 +391,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9815';
                             e.target.className += ' white-bishop hoverable white-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -496,6 +492,7 @@ export class Check {
                             } else {
                                 e.target.className = ' black-bishop hoverable black-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -507,6 +504,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9821';
                             e.target.className += ' black-bishop hoverable black-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -608,6 +606,7 @@ export class Check {
                             } else {
                                 e.target.className = ' white-rook hoverable white-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -619,6 +618,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9814';
                             e.target.className += ' white-rook hoverable white-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -720,6 +720,7 @@ export class Check {
                             } else {
                                 e.target.className = ' black-rook hoverable black-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -731,6 +732,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9820';
                             e.target.className += ' black-rook hoverable black-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -900,6 +902,7 @@ export class Check {
                             } else {
                                 e.target.className = ' white-queen hoverable white-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -911,6 +914,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9813';
                             e.target.className += ' white-queen hoverable white-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -1080,6 +1084,7 @@ export class Check {
                             } else {
                                 e.target.className = ' black-queen hoverable black-piece';
                             }
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         }
                     })
@@ -1091,6 +1096,7 @@ export class Check {
                             spot.innerHTML = '';
                             e.target.innerHTML = '&#9819';
                             e.target.className += ' black-queen hoverable black-piece';
+                            playGame.clonePieces();
                             playGame.updatePieces(currentTurn, listenForClick);
                         } else {
                             return;
@@ -1133,6 +1139,7 @@ export class Check {
                         } else {
                             e.target.className = ' white-knight hoverable white-piece';
                         }
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1146,6 +1153,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9817';
                         e.target.className += ' white-knight hoverable white-piece';
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1185,6 +1193,7 @@ export class Check {
                         } else {
                             e.target.className = ' black-knight hoverable black-piece';
                         }
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1198,6 +1207,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9822';
                         e.target.className += ' black-knight hoverable black-piece';
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1238,6 +1248,7 @@ export class Check {
                         } else {
                             e.target.className = ' white-king hoverable white-piece';
                         }
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1250,6 +1261,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9812';
                         e.target.className += ' white-king hoverable white-piece';
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1290,6 +1302,7 @@ export class Check {
                         } else {
                             e.target.className = ' black-king hoverable black-piece';
                         }
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })
@@ -1302,6 +1315,7 @@ export class Check {
                         board.children[spotId].innerHTML = '';
                         e.target.innerHTML = '&#9818';
                         e.target.className += ' black-king hoverable black-piece';
+                        playGame.clonePieces();
                         playGame.updatePieces(currentTurn, listenForClick);
                     }
                 })

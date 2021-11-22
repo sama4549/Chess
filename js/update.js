@@ -15,11 +15,6 @@ export default class Continue {
             board.children[i].removeEventListener('click', this.selectPiece);
             board.children[i].removeEventListener('click', listenForClick);
 
-            // Reset all event listeners by cloning all nodes on the board
-            let oldBoardSpot = board.children[i];
-            let newBoardSpot = oldBoardSpot.cloneNode(true);
-            oldBoardSpot.parentNode.replaceChild(newBoardSpot, oldBoardSpot);
-
             // This code will reset the board and guarantee that all of the highlighted squares are turned off
             if(board.children[i].classList.contains('available')) {
                 board.children[i].classList.remove('available');
@@ -99,6 +94,16 @@ export default class Continue {
             }
         }
 
+    }
+
+    // Reset all event listeners by cloning all nodes on the board
+    clonePieces() {
+        for (let i = 0; i < 63; i++) {
+            let oldBoardSpot = board.children[i];
+            let newBoardSpot = oldBoardSpot.cloneNode(true);
+            oldBoardSpot.parentNode.replaceChild(newBoardSpot, oldBoardSpot);
+            console.log('white piece cloned');
+        }
     }
 
     // De-select all squares
@@ -192,9 +197,11 @@ export default class Continue {
         const promotionListArray = Array.prototype.slice.call(promotionList.children);
         promotionListArray.forEach(list => list.addEventListener('click', () => {
             if(piece.classList.contains('white-piece')) {
+
                 piece.classList.remove('white-pawn');
                 piece.innerHTML = list.dataset.whitepiece;
                 piece.classList.add(list.dataset.whitename);
+                console.log('white piece replaced');
                 promotionSelection.style.display = 'none';
             } else {
                 piece.classList.remove('black-pawn');
